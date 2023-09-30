@@ -1,0 +1,60 @@
+-- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
+--
+-- Host: localhost    Database: lanchonete
+-- ------------------------------------------------------
+-- Server version	8.0.23
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `pedido`
+--
+
+DROP TABLE IF EXISTS `pedido`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `pedido` (
+  `ID` int NOT NULL AUTO_INCREMENT,
+  `OBSERVACAO` varchar(255) DEFAULT NULL,
+  `VALOR_ENTREGA` double NOT NULL,
+  `VALOR_TOTAL` double NOT NULL,
+  `CLIENTE_ID` int NOT NULL,
+  `PAGAMENTO_ID` int NOT NULL,
+  `VALOR_FINAL` double DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `fk_PEDIDO_CLIENTE_idx` (`CLIENTE_ID`),
+  KEY `fk_PEDIDO_PAGAMENTO_idx` (`PAGAMENTO_ID`),
+  CONSTRAINT `fk_PEDIDO_CLIENTE` FOREIGN KEY (`CLIENTE_ID`) REFERENCES `cliente` (`ID`),
+  CONSTRAINT `fk_PEDIDO_PAGAMENTO` FOREIGN KEY (`PAGAMENTO_ID`) REFERENCES `pagamento` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pedido`
+--
+
+LOCK TABLES `pedido` WRITE;
+/*!40000 ALTER TABLE `pedido` DISABLE KEYS */;
+INSERT INTO `pedido` VALUES (1,'Retirar hambúrguer',30,23.5,2,5,53.5),(2,'Retirar tomate',5,42,1,1,47),(3,'',30,85.5,4,2,115.5),(4,'Retirar sal da batata',25,17,7,4,42),(5,'Retirar hambúrguer',7,37,13,5,44),(6,'',7,12,18,3,19),(7,'Retirar cebola',25,27,11,4,52),(8,'Retirar queijo',30,22,3,1,52),(9,'',25,34,8,2,59),(10,'Retirar pão e hambúrguer',10,35.5,14,3,45.5),(11,'Retirar gelo do refri',20,22.5,12,4,42.5),(12,'',20,32,6,1,52);
+/*!40000 ALTER TABLE `pedido` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-09-18 19:50:41
